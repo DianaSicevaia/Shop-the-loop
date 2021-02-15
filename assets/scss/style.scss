@@ -1,4 +1,5 @@
 @import "skin";
+@import "mixins-media";
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -7,6 +8,11 @@ body {
 .page {
     padding-top: 100px;
     padding-bottom: 100px;
+
+    @include breakpoint (sm) {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
 
     &-light {
         background-color: $color-light;
@@ -33,6 +39,16 @@ body {
 
     &-logo {
         padding-right: 45px;
+
+        @include breakpoint (xs) {
+            max-width: 130px;
+        }
+    }
+}
+
+nav {
+    @include breakpoint (lg) {
+        display: none;
     }
 }
 
@@ -40,6 +56,11 @@ body {
     display: flex;
     list-style-type: none;
     padding-left: 0;
+    font-size: 14px;
+
+    @include breakpoint (lg) {
+        display: none;
+    }
 
     &-item {
         margin-right: 52px;
@@ -51,13 +72,20 @@ body {
         font-size: 14px;
         font-weight: 500;
     }
+
+    &-info {
+        .nav-item {
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+    }
 }
 
 .cart {
     background-image: url(../img/cart.svg);
     padding-left: 45px;
+    padding-right: 0;
     display: block;
-    width: 30px;
     height: 30px;
     background-repeat: no-repeat;
     background-position: 0 center;
@@ -68,7 +96,7 @@ body {
         color: $color-white;
         font-size: 12px;
         font-weight: 700;
-        padding: 10px 24px;
+        padding: 10px 17px 10px 23px;
         display: block;
     }
 }
@@ -77,6 +105,10 @@ body {
     text-align: center;
     font-size: 36px;
     text-transform: uppercase;
+
+    @include breakpoint (sm) {
+        font-size: 28px;
+    }
 }
 
 .btn {
@@ -85,7 +117,7 @@ body {
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 18px 28px;
+    padding: 10px 35px;
 
     &-xs {
         padding: 5px 28px;
@@ -107,15 +139,31 @@ body {
     display: flex;
     justify-content: space-between;
 
+    @include breakpoint (lg) {
+        flex-wrap: wrap;
+    }
+
     &-item {
         flex: 0 0 50%;
+
+        @include breakpoint (lg) {
+            flex: 0 0 100%;
+        }
     }
 }
 
 .sale {
+    @include breakpoint (lg) {
+        text-align: center;
+    }
+
     &-description {
         font-size: 30px;
         letter-spacing: -0.6px;
+
+        @include breakpoint (sm) {
+            font-size: 20px;
+        }
     }
 
     &-title {
@@ -123,11 +171,27 @@ body {
         font-weight: 700;
         margin-top: 30px;
         margin-bottom: 60px;
+
+        @include breakpoint (sm) {
+            font-size: 28px;
+            margin-top: 10px;
+            margin-bottom: 45px;
+        }
     }
 }
 
 .box {
     position: relative;
+
+    @include breakpoint (lg) {
+        max-width: 600px;
+        margin: 50px auto 0;
+    }
+
+    @include breakpoint (sm) {
+        max-width: 350px;
+        margin: 50px auto 0;
+    }
 
     &-price {
         position: absolute;
@@ -138,6 +202,10 @@ body {
         &__old {
             font-size: 24px;
             font-weight: 700;
+
+            @include breakpoint (sm) {
+                font-size: 14px;
+            }
         }
 
         &__new {
@@ -145,7 +213,17 @@ body {
             font-weight: 700;
             color: $color-important;
             margin-top: 17px;
+
+            @include breakpoint (sm) {
+                font-size: 22px;
+                margin-top: 4px;
+            }
         }
+    }
+
+    &-image {
+        width: 100%;
+        max-width: 556px;
     }
 }
 
@@ -154,18 +232,35 @@ body {
     color: $color-white;
     padding: 64px 0 54px;
 
+    @include breakpoint (sm) {
+        padding: 40px 0 42px;
+    }
+
     &-title {
         font-size: 30px;
         font-weight: 400;
+        text-transform: uppercase;
+
+        @include breakpoint (sm) {
+            font-size: 18px;
+            line-height: 1.5;
+        }
 
         span {
             font-weight: 700;
-            text-transform: uppercase;
+
+            @include breakpoint (xs) {
+                display: block;
+            }
         }
     }
 
     &-description {
         font-size: 21px;
+
+        @include breakpoint (sm) {
+            font-size: 14px;
+        }
     }
 }
 
@@ -173,12 +268,26 @@ body {
     display: flex;
     justify-content: space-between;
 
+    @include breakpoint (lg) {
+        flex-wrap: wrap;
+    }
+
     &-item {
         flex: 0 0 50%;
         padding: 43px 0 63px;
         background-repeat: no-repeat;
-        background-size: 190ppx 171px;
+        background-size: 190px 171px;
         background-position: calc(100% - 37px) bottom;
+
+        @include breakpoint (lg) {
+            flex: 0 0 100%;
+        }
+
+        @include breakpoint (xs) {
+            padding: 43px 0 63px;
+            background-position: 100% bottom;
+            background-size: 153px 130px;
+        }
     }
 
     &-man {
@@ -193,11 +302,19 @@ body {
         font-size: 24px;
         font-weight: 300;
         text-transform: uppercase;
+
+        @include breakpoint (xs) {
+            font-size: 18px;
+        }
     }
 
     &-description {
         font-size: 16px;
         margin-bottom: 43px;
+    }
+
+    @include breakpoint (xs) {
+        font-size: 12px;
     }
 }
 
@@ -208,9 +325,28 @@ body {
     margin-top: 103px;
     margin-bottom: 100px;
 
+    @include breakpoint (lg) {
+        flex-wrap: wrap;
+    }
+
+    @include breakpoint (xs) {
+        margin-bottom: 50px;
+    }
+
     &-item {
         flex:0 0 24%;
         position: relative;
+
+        @include breakpoint (lg) {
+            flex: 0 0 49%;
+            margin-bottom: 20px;
+        }
+
+        @include breakpoint (xs) {
+            flex: 0 0 100%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
 
         &:before, &:after {
             content:'';
@@ -219,6 +355,10 @@ body {
             height: 25px;
             background-size: cover;
             background-repeat: no-repeat;
+
+            @include breakpoint (lg) {
+                background-size: 100% 25px;
+            }
         }
 
         &:before {
@@ -250,8 +390,17 @@ body {
     justify-content: space-between;
     padding: 30px 0;
 
+    @include breakpoint (lg) {
+        flex-wrap: wrap;
+    }
+
     &-logo {
         flex: 0 0 40%;
+
+        @include breakpoint (lg) {
+            flex: 0 0 100%;
+            margin-bottom: 20px;
+        }
     }
 
     &-nav {
@@ -259,26 +408,201 @@ body {
         display: flex;
         justify-content: space-between;
         color: $color-white;
+
+        @include breakpoint (lg) {
+            flex: 0 0 100%;
+        }
+
+        @include breakpoint (sm) {
+            flex-wrap: wrap;
+        }
     }
 
     &-list {
         list-style-type: none;
         padding-left: 0;
 
-        &-title {
+        @include breakpoint (sm) {
+            flex: 0 0 49%;
+            margin-bottom: 20px;
+        }
+
+        &__title {
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
         }
 
-        &-item {
+        &__item {
             margin-bottom: 10px;
+
+            @include breakpoint (xs) {
+                margin-bottom: 14px;
+            }
         }
 
         &__link {
             color: $color-gray;
             text-decoration: none;
             font-size: 14px;
+
+            @include breakpoint (xs) {
+                font-size: 12px;
+            }
         }
     }
+
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        font-size: 14px;
+
+        @include breakpoint (sm) {
+            flex-direction: column;
+            text-align: left;
+        }
+
+        &-link {
+            color: $color-dark;
+            text-decoration: none;
+        }
+    }
+}
+
+
+
+//Burger-menu
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-family: sans-serif;
+	font-size: 10px;
+}
+
+.container {
+	width: 100%;
+	height: 100vh;
+	background: #000428;
+	background: -webkit-linear-gradient(to right, #004e92, #000428);
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #004e92, #000428);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	background-size: 400% 400%;
+	position: relative;
+}
+
+.nav-bar {
+	position: absolute;
+	background-color: $color-accent;
+	top: 0;
+	right: 100%;
+	height: 100vh;
+	width: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: position 2.9s;
+	-webkit-transition: position 2.9s;
+	-moz-transition: position 2.9s;
+	-ms-transition: position 2.9s;
+	-o-transition: position 2.9s;
+}
+
+.toggle {
+	left: 0;
+    box-shadow: 1px 0 15px 2px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+}
+
+.toggle-menu {
+	background-color: $color-dark;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+    padding: 6px 6px;
+    cursor: pointer;
+    
+    @include breakpoint (minlg) {
+        display: none;
+    }
+
+    @include breakpoint (xs) {
+        width: 18px;
+	    height: 18px;
+    }
+}
+
+.line {
+	width: 100%;
+	height: 3px;
+	border-radius: 5px;
+	background-color: #fff;
+	transition: transform 0.2s ease-out;
+	-webkit-transition: transform 0.2s ease-out;
+	-moz-transition: transform 0.2s ease-out;
+	-ms-transition: transform 0.2s ease-out;
+	-o-transition: transform 0.2s ease-out;
+}
+
+.toggle .line1 {
+	background-color: #000000;
+	transform: scale(0.9) rotateZ(-45deg) translate(-6px, 4px);
+}
+
+.toggle .line2 {
+	display: none;
+}
+
+.toggle .line3 {
+	background-color: #000000;
+	transform: scale(0.9) rotateZ(45deg) translate(-6px, -4px);
+}
+
+.toggle .toggle-menu {
+	background-color: white;
+}
+
+.nav-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 14px;
+}
+
+.nav-list-item {
+	text-align: center;
+	padding: 20px 0;
+}
+
+
+.nav-link::before {
+	position: absolute;
+	content: '';
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background-color: #fff;
+	transform: scaleX(0);
+	transition: transform 0.4s ease-in-out;
+	transform-origin: left;
+	-webkit-transition: transform 0.4s ease-in-out;
+	-moz-transition: transform 0.4s ease-in-out;
+	-ms-transition: transform 0.4s ease-in-out;
+	-o-transition: transform 0.4s ease-in-out;
+}
+
+.nav-link:hover::before {
+	transform: scaleX(1);
 }
